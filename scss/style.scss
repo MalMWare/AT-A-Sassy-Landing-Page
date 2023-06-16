@@ -1,3 +1,6 @@
+@use "config" as c;
+@use "btnConfig" as bc;
+@use "utilities" as u;
 
 * {
   box-sizing: border-box;
@@ -6,17 +9,19 @@
 }
 
 body {
-  background-color: $light-color;
-  font-family: $font-stack;
+  background-color: c.$light-color;
+  font-family: c.$font-stack;
   line-height: 1;
 }
 
 img {
   border-radius: 50%;
+  width: 100%;
 }
 
 a {
   text-decoration: none;
+  color: u.text-color-picker(c.$primary-color);
 }
 
 .hero {
@@ -28,6 +33,39 @@ a {
   // 1. $variables
   // 2. nesting (dont forget about the ampersand (&) parent selector!)
   // 3. At-Rules
+  @include u.set-bg(c.$primary-color);
+
+  nav {
+    display:grid;
+    grid: 1fr / auto auto;
+    align-items: center;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  h1.banner {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1.3rem;
+  }
+
+  &-content {
+    display: grid;
+    grid: 1fr / 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    gap: 2%
+  }
 }
 
 // This code is related to some of the aspects of SCSS we have yet to cover.
